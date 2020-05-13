@@ -34,6 +34,25 @@ valor		DECIMAL(7,2),
 premio		VARCHAR(200)
 )
 
+DECLARE 	@cod			INT,
+		@nome			VARCHAR(100),
+		@val_uni		DECIMAL(7,2),
+SET @cod = 1
+WHILE(@cod <=100)
+BEGIN
+	SET @nome = 'PRODUTO ' + CAST(@cod AS VARCHAR(3))
+	IF(@cod % 2 = 0)
+	BEGIN
+		SET @val_uni = @cod *1.5
+	END
+	ELSE
+	BEGIN
+		SET @val_uni = @cod * 2.5
+	END
+	INSERT INTO produtos VALUES (@nome, @val_uni)
+	SET @cod = @cod + 1
+END
+
 INSERT INTO bonus (valor, premio) VALUES
 ('1000', 'Jogo de Copos'),
 ('2000', 'Jogo de Pratos'),
